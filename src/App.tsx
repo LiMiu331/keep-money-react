@@ -6,9 +6,12 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import Layout from "./components/Layout";
+import Tags from "./pages/Tags";
+import Money from "./pages/Money";
+import Statistics from "./pages/Statistics";
+import NotFound from "./pages/NotFound";
 function App() {
-  return (
+    return (
       <Router>
           <Switch>
             <Route path="/tags">
@@ -22,37 +25,10 @@ function App() {
             </Route>
             <Redirect exact from={"/"} to={"tags"}/>
             <Route path="*">
-              <Notfound/>
+              <NotFound/>
             </Route>
           </Switch>
       </Router>
   );
-}
-function Notfound(){
-  return <h2>找不到该页面</h2>
-}
-
-function Tags() {
-  return (
-      <Layout>
-          <h2>标签页</h2>
-      </Layout>
-  )
-}
-
-function Money() {
-  return (
-      <Layout>
-          <h2>记账页</h2>
-      </Layout>
-  )
-}
-
-function Statistics() {
-  return (
-      <Layout>
-          <h2>统计页</h2>
-      </Layout>
-  )
 }
 export default App;

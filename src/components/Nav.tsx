@@ -10,18 +10,17 @@ box-shadow: 0 0 3px rgba(0,0,0,0.25);
     {
     width: 33.333%;
     text-align: center;
-    padding: 4px 0;
-    line-height: 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     a{
-    
-    }
-    .icon{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4px 0;
+      line-height: 24px;
+      .icon{
       width: 24px;
       height: 24px;
       }
+    }
     }
   }
 `

@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import React, {useState} from "react";
 
-const CategorySection = styled.section`
+const CategorySectionUI = styled.section`
 font-size: 24px;
   ul{
   display: flex;
@@ -18,4 +19,15 @@ font-size: 24px;
     }
   }
 `
+const CategorySection: React.FunctionComponent = () => {
+    const [category,setCategory] = useState('-') // + 表示收入 -表示支出
+    return (
+        <CategorySectionUI>
+        <ul>
+            <li className={category === '-' ? 'selected' : ''} onClick={()=> {setCategory('-')}}>支出</li>
+            <li className={category === '+' ? 'selected' : ''} onClick={()=> {setCategory('+')}}>收入</li>
+        </ul>
+        </CategorySectionUI>
+    )
+}
 export default CategorySection;

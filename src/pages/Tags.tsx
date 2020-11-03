@@ -3,7 +3,12 @@ import React from "react";
 import styled from "styled-components";
 
 const TagSection = styled.section`
+ flex-grow: 1;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-end;
  background: #ffffff;
+ align-items: flex-start;
  padding: 12px 16px;
  ol{
   margin: 0 -12px;
@@ -76,7 +81,6 @@ const NumberPadSection = styled.section`
     box-shadow: inset 0 -5px 5px -5px rgba(0,0,0,0.25);
   }
   .pad{
-  border: 1px solid red;
     button{
     font-size: 18px;
     float: left;
@@ -122,10 +126,14 @@ const NumberPadSection = styled.section`
     }
   }
 `
+const MyLayout = styled(Layout)`
+  display: flex;
+  flex-direction: column;
+`
 
 function Tags() {
     return (
-        <Layout>
+        <MyLayout>
             <TagSection className={'tags'}>
                 <ol>
                     <li>衣</li>
@@ -166,7 +174,7 @@ function Tags() {
                     <button>.</button>
                 </div>
             </NumberPadSection>
-        </Layout>
+        </MyLayout>
     )
 }
 

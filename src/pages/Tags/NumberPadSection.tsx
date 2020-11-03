@@ -59,7 +59,13 @@ const NumberPadSectionUI = styled.section`
   }
 `
 const NumberPadSection: React.FC = ()=> {
-    const [output,setOut] = useState('0')
+    const [output,_setOut] = useState('0')
+    const setOut = (output:string) => {
+        if(output.length >16){
+            output = output.slice(0,16)
+        }
+        _setOut(output);
+    }
     const onClickButtonWrapper = (e:React.MouseEvent)=> {
        const text=  (e.target as HTMLButtonElement).textContent
        if(text === null){
@@ -84,16 +90,25 @@ const NumberPadSection: React.FC = ()=> {
                }
                break;
            case '删除':
+               if(output.length === 1){
+                   setOut('0')
+               }else {
+                   setOut(output.slice(0,-1))
+               }
                console.log(text);
                break;
            case '清空':
-               console.log(text);
+                    setOut('0')
                break;
            case  'OK':
                console.log(text);
                break
            case '.':
-               console.log(text);
+                    if(output.indexOf('.') >= 0){
+                        return;
+                    }else {
+                        setOut(output + text)
+                    }
                break
        }
     }

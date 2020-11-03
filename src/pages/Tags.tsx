@@ -9,12 +9,13 @@ const TagSection = styled.section`
  ol{
   margin: 0 -12px;
   li{
-    background: #d9d9d9;
+    background: rgb(253, 154, 22);
     border-radius: 18px;
     display: inline-block;
     padding: 3px 18px;
     font-size: 14px;
     margin: 8px 12px;
+    color: white;
   }
  }
  button{
@@ -47,7 +48,21 @@ font-size: 14px;
   }
 `
 const CategorySection = styled.section`
-
+font-size: 24px;
+  ul{
+  display: flex;
+  background: white;
+  color: rgb(253, 154, 22);
+    li{
+    width: 50%;
+    text-align: center;
+    padding: 16px 0;
+      &.selected{
+        background: rgb(253, 154, 22);
+        color: white;
+      }
+    }
+  }
 `
 const NumberPadSection = styled.section`
 
@@ -71,9 +86,9 @@ function Tags() {
                     <input type="text" placeholder={'请输入备注'}/>
                 </label>
             </NotesSection>
-            <CategorySection>
+            <CategorySection> 
                 <ul>
-                    <li>支出</li>
+                    <li className={'selected'}>支出</li>
                     <li>收入</li>
                 </ul>
             </CategorySection>

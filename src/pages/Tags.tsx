@@ -14,14 +14,8 @@ const MyLayout = styled(Layout)`
 function Tags() {
     return (
         <MyLayout>
-            <TagSection>
-            </TagSection>
-            <NotesSection>
-                <label>
-                    <span>备注</span>
-                    <input type="text" placeholder={'请输入备注'}/>
-                </label>
-            </NotesSection>
+            <TagSection/>
+            <NotesSection/>
             <CategorySection>
                 <ul>
                     <li className={'selected'}>支出</li>

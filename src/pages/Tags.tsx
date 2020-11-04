@@ -17,35 +17,24 @@ function Tags() {
         category: '-',
         amount: '0'
     })
+    type Selected = typeof selected;
+    const onChange = (obj:Partial<Selected>)=> {
+        setSelected({
+            ...selected,
+            ...obj
+        })
+    }
     return (
         <MyLayout>
             {selected.amount}
-            <TagSection value={selected.tags} onChange={(tags)=> setSelected(
-                {
-                    ...selected,
-                    tags: tags
-                }
-            )}/>
-            <NotesSection value={selected.note} onChange={(note)=>setSelected(
-                {
-                    ...selected,
-                    note: note
-                }
-            )}/>
-            <CategorySection value={selected.category} onChange={(category)=>setSelected(
-                {
-                    ...selected,
-                    category: category
-                }
-            )}/>
+            <hr/>
+            {selected.category}
+            <TagSection value={selected.tags} onChange={(tags)=> onChange({tags:tags})}/>
+            <NotesSection value={selected.note} onChange={(note)=>onChange({note: note})}/>
+            <CategorySection value={selected.category} onChange={(category)=>onChange({category: category})}/>
             <NumberPadSection
                 value={selected.amount}
-                onChange={(amount)=>setSelected(
-                {
-                    ...selected,
-                    amount: amount
-                }
-            )}
+                onChange={(amount)=>onChange({amount: amount})}
                 onOk={()=> {console.log('ok')}}
             />
         </MyLayout>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React  from "react";
 
 const NumberPadSectionUI = styled.section`
   display: flex;
@@ -58,13 +58,18 @@ const NumberPadSectionUI = styled.section`
     }
   }
 `
-const NumberPadSection: React.FC = ()=> {
-    const [output,_setOut] = useState('0')
+type Props = {
+    value:string,
+    onChange:(amount:string)=> void;
+    onOk?:()=>void;
+}
+const NumberPadSection: React.FC<Props> = (props)=> {
+    const output = props.value
     const setOut = (output:string) => {
         if(output.length >16){
             output = output.slice(0,16)
         }
-        _setOut(output);
+        props.onChange(output);
     }
     const onClickButtonWrapper = (e:React.MouseEvent)=> {
        const text=  (e.target as HTMLButtonElement).textContent
@@ -95,13 +100,14 @@ const NumberPadSection: React.FC = ()=> {
                }else {
                    setOut(output.slice(0,-1))
                }
-               console.log(text);
                break;
            case '清空':
                     setOut('0')
                break;
            case  'OK':
-               console.log(text);
+               if(props.onOk){
+                   props.onOk()
+               }
                break
            case '.':
                     if(output.indexOf('.') >= 0){

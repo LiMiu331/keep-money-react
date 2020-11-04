@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, {useState} from "react";
+import React from "react";
 
 const NotesSectionUI = styled.section`
 background: #f5f5f5;
@@ -21,15 +21,19 @@ font-size: 14px;
     }
   }
 `
-const NotesSection:React.FC = () => {
-    const [note,setNote] = useState('')
+type Props = {
+    value: string,
+    onChange: (note: string)=>void;
+}
+const NotesSection:React.FC<Props> = (props) => {
+    const note = props.value
     return(
         <NotesSectionUI>
         <label>
             <span>备注</span>
             <input type="text" placeholder={'请输入备注'}
                    value={note}
-                   onChange={(e) => setNote(e.target.value)}
+                   onChange={(e) => props.onChange(e.target.value)}
             />
         </label>
         </NotesSectionUI>

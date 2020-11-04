@@ -34,9 +34,13 @@ const TagSectionUI = styled.section`
  margin-top: 8px;
  }
 `
-const TagSection: React.FunctionComponent = (proops)=> {
+type Props = {
+    value: string[];
+    onChange:(selected: string[])=>void; // 声明参数为空，返回值为空
+}
+const TagSection: React.FunctionComponent<Props> = (props)=> {
     const [tags, setTags] = useState<string[]>(['衣','食','住','行'])
-    const [selectedTags, setSelectedTags] = useState<string[]>([])
+    const selectedTags = props.value
     const onAddTag = ()=> {
         const newTag = window.prompt('请输入新标签的名字👻')
         if(newTag !== null){
@@ -46,10 +50,10 @@ const TagSection: React.FunctionComponent = (proops)=> {
     const onToggleTag = (tag: string)=> {
         const index = selectedTags.indexOf(tag)
         if(index >= 0){
-          setSelectedTags(selectedTags.filter(t => t !== tag))
+          props.onChange(selectedTags.filter(t => t !== tag))
             // 如果tag已经被选中了，就复制所有没有 被选中的tag，作为新的 selectedTag
         }else{
-           setSelectedTags([...selectedTags,tag])
+           props.onChange([...selectedTags,tag])
         }
     }
     return (

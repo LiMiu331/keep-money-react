@@ -2,15 +2,18 @@ import Layout from "../components/Layout";
 import React, {useState} from "react";
 import styled from "styled-components";
 import Icon from "../components/icon";
+import {Link} from "react-router-dom";
 
 const TagList = styled.ol`
   font-size: 16px;
   li{
+    a{
+      display: flex;
+      justify-content: space-between;
+    }
     border-bottom: 1px solid #d5d5d5;
     line-height: 20px;
     padding: 12px 16px;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
   }
 `
@@ -34,8 +37,12 @@ function Tags() {
         <Layout>
             <TagList>
             {tags.map(tag=> <li key={tag}>
-                <span className={'oneLine'}>{tag}</span>
+                <Link to={`/tags/${tag}`}>
+                <span className={'oneLine'}>
+                    {tag}
+                </span>
                 <Icon name={'right'}/>
+                </Link>
             </li>)}
             </TagList>
             <Center>

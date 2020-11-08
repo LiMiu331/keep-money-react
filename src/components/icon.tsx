@@ -3,8 +3,9 @@ require ('icon/label.svg')
 require ('icon/charge.svg')
 require('icon/statistics.svg')
 require('icon/right.svg')
+require('icon/left.svg')
 type Props = {
-    name: string
+    name?: string
 }
 const Icon = (props: Props)=> {
     return (

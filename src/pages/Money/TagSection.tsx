@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, {useState} from 'react'
 import {useTags} from "../../useTags";
+import createId from "../../lib/createId";
 const TagSectionUI = styled.section`
  flex-grow: 1;
  display: flex;
@@ -45,7 +46,7 @@ const TagSection: React.FunctionComponent<Props> = (props)=> {
     const onAddTag = ()=> {
         const newTag = window.prompt('请输入新标签的名字👻')
         if(newTag !== null){
-            setTags([...tags,{id: Math.random(), name: newTag}])
+            setTags([...tags,{id: createId(), name: newTag}])
         }
     }
     const onToggleTag = (tagId: number)=> {

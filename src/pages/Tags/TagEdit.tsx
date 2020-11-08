@@ -25,7 +25,7 @@ const Center = styled.div`
   align-items: center;
 `
 const TagEdit: React.FC = ()=> {
-    const {findTag} = useTags()
+    const {findTag, updateTag} = useTags()
     let { id } = useParams();
     const tag = findTag(parseInt(id))
     return(
@@ -36,7 +36,13 @@ const TagEdit: React.FC = ()=> {
                 <Icon/>
             </Topbar>
             <InputWrapper>
-                <Input label={'标签名'} type={'text'} placeholder={'标签名'} value={tag.name}/>
+                <Input
+                    label={'标签名'}
+                    type={'text'}
+                    placeholder={'标签名'}
+                    value={tag.name}
+                    onChange={(e)=> {updateTag(tag.id, {name: e.target.value})}}
+                />
             </InputWrapper>
             <Center>
                 <Button>删除标签</Button>

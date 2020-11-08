@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React, {useState} from 'react'
+import {useTags} from "../../useTags";
 const TagSectionUI = styled.section`
  flex-grow: 1;
  display: flex;
@@ -35,25 +36,25 @@ const TagSectionUI = styled.section`
  }
 `
 type Props = {
-    value: string[];
-    onChange:(selected: string[])=>void; // 声明参数为空，返回值为空
+    value: number[];
+    onChange:(selected: number[])=>void; // 声明参数为空，返回值为空
 }
 const TagSection: React.FunctionComponent<Props> = (props)=> {
-    const [tags, setTags] = useState<string[]>(['衣','食','住','行'])
-    const selectedTags = props.value
+    const {tags,setTags } = useTags()
+    const selectedIds = props.value
     const onAddTag = ()=> {
         const newTag = window.prompt('请输入新标签的名字👻')
         if(newTag !== null){
-            setTags([...tags,newTag])
+            setTags([...tags,{id: Math.random(), name: newTag}])
         }
     }
-    const onToggleTag = (tag: string)=> {
-        const index = selectedTags.indexOf(tag)
+    const onToggleTag = (tagId: number)=> {
+        const index = selectedIds.indexOf(tagId)
         if(index >= 0){
-          props.onChange(selectedTags.filter(t => t !== tag))
+          props.onChange(selectedIds.filter(t => t !== tagId))
             // 如果tag已经被选中了，就复制所有没有 被选中的tag，作为新的 selectedTag
         }else{
-           props.onChange([...selectedTags,tag])
+           props.onChange([...selectedIds,tagId])
         }
     }
     return (
@@ -62,8 +63,8 @@ const TagSection: React.FunctionComponent<Props> = (props)=> {
                 {
                     tags.map(
                         tag=>
-                            <li key={tag} onClick={()=>onToggleTag(tag)} className={selectedTags.indexOf(tag)>= 0 ? 'selected' : ''}>
-                                {tag}
+                            <li key={tag.id} onClick={()=>onToggleTag(tag.id)} className={selectedIds.indexOf(tag.id)>= 0 ? 'selected' : ''}>
+                                {tag.name}
                             </li>
                     )
                 }

@@ -26,9 +26,9 @@ function Money() {
     }
     return (
         <MyLayout>
-            {selected.amount}
+            {selected.note}
             <hr/>
-            {selected.category}
+            {selected.tagIds}
             <TagSection value={selected.tagIds} onChange={(tagIds)=> onChange({tagIds:tagIds})}/>
             <NotesSection value={selected.note} onChange={(note)=>onChange({note: note})}/>
             <CategorySection value={selected.category} onChange={(category)=>onChange({category: category})}/>

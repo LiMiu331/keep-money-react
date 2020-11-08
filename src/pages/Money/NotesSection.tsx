@@ -4,7 +4,7 @@ import Input from "../../components/Input";
 
 const NotesSectionUI = styled.section`
 background: #f5f5f5;
-padding: 0 16px;
+padding: 14px 16px;
 font-size: 14px;
 `
 type Props = {
@@ -18,6 +18,7 @@ const NotesSection:React.FC<Props> = (props) => {
             <Input label={'备注'}
                    value={note}
                    type="text"
+                   placeholder={'请输入备注'}
                    onChange={(e)=> props.onChange(e.target.value)}/>
         </NotesSectionUI>
     )
